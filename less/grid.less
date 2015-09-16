@@ -1,0 +1,62 @@
+@import "../bower_components/bootstrap/less/mixins/grid-framework.less";
+@import "../bower_components/bootstrap/less/mixins/grid.less";
+@import "variables.less";
+
+.container {
+  .container-fixed();
+
+  @media (min-width: @screen-sm) {
+    width: @container-sm;
+  }
+  @media (min-width: @screen-md) {
+    width: @container-md;
+  }
+  @media (min-width: @screen-lg) {
+    width: @container-lg;
+  }
+  @media (min-width: @screen-xl) {
+    width: @container-xl;
+  }
+}
+
+// Fluid container
+.container-fluid {
+  .container-fixed();
+}
+
+
+// Row
+.row {
+  .make-row();
+}
+
+
+// Columns
+.make-grid-columns();
+
+
+// Extra small grid
+.make-grid(xs);
+
+
+// Small grid
+@media (min-width: @screen-sm) {
+  .make-grid(sm);
+}
+
+
+// Medium grid
+@media (min-width: @screen-md) {
+  .make-grid(md);
+}
+
+
+// Large grid
+@media (min-width: @screen-lg) {
+  .make-grid(lg);
+}
+
+// Extra Large grid
+@media (min-width: @screen-xl) {
+  .make-grid(xl);
+}

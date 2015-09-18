@@ -78,8 +78,8 @@ module.exports = function(grunt) {
                 livereload: false
             },
             grid2: {
-                files: [ 'less/grid2.less' ],
-                tasks: [ 'less:grid2', 'cssmin:grid2' ]
+                files: [ 'less/grid.less' ],
+                tasks: [ 'less:grid', 'cssmin:grid' ]
             }
         },
     });

@@ -1,6 +1,6 @@
 # Bootstrap Builder
 
-Scripts para customizar [Bootstrap](http://getbootstrap.com
+Scripts para customizar [Bootstrap](http://getbootstrap.com)
 
 ## Componentes disponibles para customizar
 - [Grid System](http://getbootstrap.com/css/#grid)

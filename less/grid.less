@@ -1,62 +1,114 @@
+@import "variables.less";
 @import "../bower_components/bootstrap/less/mixins/grid-framework.less";
 @import "../bower_components/bootstrap/less/mixins/grid.less";
-@import "variables.less";
+@import "../bower_components/bootstrap/less/mixins/responsive-visibility.less";
 
-.container {
-  .container-fixed();
-
-  @media (min-width: @screen-sm) {
-    width: @container-sm;
-  }
-  @media (min-width: @screen-md) {
-    width: @container-md;
-  }
-  @media (min-width: @screen-lg) {
-    width: @container-lg;
-  }
-  @media (min-width: @screen-xl) {
-    width: @container-xl;
-  }
-}
-
-// Fluid container
-.container-fluid {
+// Estilos generales
+.container, .container-fluid {
   .container-fixed();
 }
 
-
-// Row
 .row {
   .make-row();
 }
 
-
-// Columns
 .make-grid-columns();
 
-
-// Extra small grid
+// width auto
 .make-grid(xs);
+.hidden-xs-up, .hidden-xl-down {
+  .responsive-invisibility();
+}
 
+// width <= 543px
+@media (max-width: (@screen-sm - 1)) {
+  .hidden-xs, .hidden-xs-down {
+    .responsive-invisibility();
+  }
+}
 
-// Small grid
+// width >= 544px
 @media (min-width: @screen-sm) {
+  .container {
+    width: @container-sm;
+  }
   .make-grid(sm);
+  .hidden-sm-up {
+    .responsive-invisibility();
+  }
 }
 
+// width >= 544px && <= 767px
+@media (min-width: @screen-sm) and (max-width: (@screen-md - 1)) {
+  .hidden-sm {
+    .responsive-invisibility();
+  }
+}
 
-// Medium grid
+// width <= 767px
+@media (max-width: (@screen-md - 1)) {
+  .hidden-sm-down {
+    .responsive-invisibility();
+  }
+}
+
+// width >= 768
 @media (min-width: @screen-md) {
+  .container {
+    width: @container-md;
+  }
   .make-grid(md);
+  .hidden-md-up {
+    .responsive-invisibility();
+  }
 }
 
+// width >= 768px && <= 991px
+@media (min-width: @screen-md) and (max-width: (@screen-lg - 1)) {
+  .hidden-md {
+    .responsive-invisibility();
+  }
+}
 
-// Large grid
+// width <= 991px
+@media (max-width: (@screen-lg - 1)) {
+  .hidden-md-down {
+    .responsive-invisibility();
+  }
+}
+
+// width >= 992px
 @media (min-width: @screen-lg) {
+  .container {
+    width: @container-lg;
+  }
   .make-grid(lg);
+  .hidden-lg-up {
+    .responsive-invisibility();
+  }
 }
 
-// Extra Large grid
+// width >= 992px && <= 1119px
+@media (min-width: @screen-lg) and (max-width: (@screen-xl - 1)) {
+  .hidden-lg {
+    .responsive-invisibility();
+  }
+}
+
+// width <= 1119px
+@media (max-width: (@screen-xl - 1)) {
+  .hidden-lg-down {
+    .responsive-invisibility();
+  }
+}
+
+// width >= 1200px
 @media (min-width: @screen-xl) {
+  .container {
+    width: @container-xl;
+  }
   .make-grid(xl);
+  .hidden-xl, .hidden-xl-up {
+    .responsive-invisibility();
+  }
 }

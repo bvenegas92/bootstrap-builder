@@ -2,6 +2,7 @@
 
 module.exports = function(grunt) {
     //Plugins
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -10,6 +11,16 @@ module.exports = function(grunt) {
         pgk: grunt.file.readJSON('package.json'),
 
         less: {
+            normalize: {
+                options:{
+                    sourceMap: true,
+                    sourceMapFilename: "dist/css/normalize.css.map",
+                    sourceMapURL: "normalize.css.map"
+                },
+                files: {
+                    'dist/css/normalize.css': 'less/normalize.less'
+                }
+            },
             grid: {
                 options:{
                     sourceMap: true,
@@ -20,32 +31,44 @@ module.exports = function(grunt) {
                     'dist/css/grid.css': 'less/grid.less'
                 }
             },
-            responsive_utilities: {
+            bootstrap_build: {
                 options:{
                     sourceMap: true,
-                    sourceMapFilename: "dist/css/responsive.utilities.css.map",
-                    sourceMapURL: "responsive.utilities.css.map"
+                    sourceMapFilename: "dist/css/bootstrap-build.css.map",
+                    sourceMapURL: "bootstrap-build.css.map"
                 },
                 files: {
-                    'dist/css/responsive.utilities.css': 'less/responsive-utilities.less'
-                }
-            },
-            bootstrap: {
-                options:{
-                    sourceMap: true,
-                    sourceMapFilename: "dist/css/bootstrap.css.map",
-                    sourceMapURL: "bootstrap.css.map"
-                },
-                files: {
-                    'dist/css/bootstrap.css': 'less/bootstrap.less'
+                    'dist/css/bootstrap-build.css': 'less/bootstrap-build.less'
                 }
             }
         },
 
         cssmin: {
+            normalize: {
+                options: {
+                    shorthandCompacting: false,
+                    roundingPrecision: -1
+                },
+                files: {
+                    'dist/css/normalize.min.css': 'dist/css/normalize.css'
+                }
+            },
             grid: {
-                target: {
-                    files: [{ src: 'dist/css/grid.css', dest: 'dist/css/grid.min.css' }]
+                options: {
+                    shorthandCompacting: false,
+                    roundingPrecision: -1
+                },
+                files: {
+                    'dist/css/grid.min.css': 'dist/css/grid.css'
+                }
+            },
+            bootstrap_build: {
+                options: {
+                    shorthandCompacting: false,
+                    roundingPrecision: -1
+                },
+                files: {
+                    'dist/css/bootstrap-build.min.css': 'dist/css/bootstrap-build.css'
                 }
             }
         },
@@ -54,22 +77,19 @@ module.exports = function(grunt) {
             options: {
                 livereload: false
             },
-            grid: {
-                files: [ 'less/grid.less' , 'less/variables.less'],
-                tasks: [ 'less:grid' ]
-            },
-            responsive_utilities: {
-                files: [ 'less/responsive-utilities.less' , 'less/variables.less'],
-                tasks: [ 'less:responsive_utilities' ]
+            grid2: {
+                files: [ 'less/grid2.less' ],
+                tasks: [ 'less:grid2', 'cssmin:grid2' ]
             }
-        }
+        },
     });
 
     //Tasks
+    grunt.registerTask('normalize', ['less:normalize', 'cssmin:normalize']);
     grunt.registerTask('grid', ['less:grid', 'cssmin:grid']);
-    grunt.registerTask('responsive-utilities', ['less:responsive_utilities']);
-    grunt.registerTask('bootstrap', ['less:bootstrap']);
+    grunt.registerTask('all', ['normalize', 'grid']);
+    grunt.registerTask('bootstrap-build', ['less:bootstrap_build', 'cssmin:bootstrap_build']);
 
-    grunt.registerTask('dev', ['grid', 'responsive-utilities', 'watch']);
+    grunt.registerTask('dev', ['grid', 'watch']);
     grunt.registerTask('default', ['dev']);
 };

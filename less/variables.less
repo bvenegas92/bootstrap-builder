@@ -1,3 +1,6 @@
+// Defaults
+@import "../bower_components/bootstrap/less/variables.less";
+
 // Propiedades del grid
 @grid-columns: 12;
 @grid-pixel-root: 16px;
@@ -10,18 +13,12 @@
 @screen-xl: (75 * @grid-pixel-root); //1200px
 
 // Tamaños maximos de `.container`
-// small / smartphones
-@container-phone:             (34 * @grid-pixel-root + @grid-gutter-width); //568px
-@container-sm:                 @container-phone;
+@container-sm: (34 * @grid-pixel-root); //544px
+@container-md: (45 * @grid-pixel-root); //720px
+@container-lg: (60 * @grid-pixel-root); //960px
+@container-xl: (72.25 * @grid-pixel-root); //1156px
 
-// medium / tablets
-@container-tablet:            (45 * @grid-pixel-root + @grid-gutter-width); //744px
-@container-md:                 @container-tablet;
-
-// large / desktop
-@container-desktop:           (60 * @grid-pixel-root + @grid-gutter-width); //984px
-@container-lg:                 @container-desktop;
-
-// xtra large / wide desktop
-@container-large-desktop:     (72.25 * @grid-pixel-root + @grid-gutter-width); //1180px
-@container-xl:                 @container-large-desktop;
+// Glyphicons
+@icon-font-path:          "../fonts/";
+@icon-font-name:          "glyphicons-halflings-regular";
+@icon-font-svg-id:        "glyphicons_halflingsregular";
